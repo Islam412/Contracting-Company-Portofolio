@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/4.jpeg" style="border-radius: 50%;">
+<title>شركة ركن للعقارات - نبني بثقة وننفذ باحتراف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* 1. المتغيرات والألوان - تم التحديث للوضع الغامق */
+:root {
+  --primary: #00bcd4; /* أزرق سماوي/تركواز للتأكيد (جريء وعصري) */
+  --secondary: #4caf50; /* أخضر نيون للإبراز */
+  --accent: #ffeb3b; /* أصفر / ذهبي نيون للتحذير */
+  --dark: #0a0e14; /* خلفية سوداء عميقة جدًا */
+  --light-dark: #1f2533; /* لون البطاقة/القسم الداكن */
+  --card-bg: var(--light-dark); /* خلفية البطاقة */
+  --text-color: #e4e7eb; /* لون النص الفاتح للتباين */
+  --text-secondary: #aeb6c4; /* نص ثانوي رمادي فاتح */
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+  --shadow-deep: rgba(0, 0, 0, 0.7);
+  --gradient: linear-gradient(45deg, #00bcd4, #00897b); /* تدرج الألوان الأساسي */
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. الأساسيات العامة */
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--dark); /* خلفية داكنة جدًا */
+  color: var(--text-color); /* نص فاتح */
+  line-height: 1.8;
+  overflow-x: hidden;
+  transition: background-color 0.5s; /* إضافة نعومة للتغير */
+}
+
+/* زر الحركة الرئيسي */
+.btn-primary {
+  background: var(--gradient);
+  color: var(--dark); /* نص غامق على الزر المضيء */
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 800; /* وزن ثقيل */
+  box-shadow: 0 8px 30px rgba(0, 188, 212, 0.4); /* ظل بلون أساسي */
+  transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+  display: inline-block;
+  border: none;
+  letter-spacing: 1px;
+}
+.btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 188, 212, 0.6);
+  background: linear-gradient(45deg, #00e5ff, #1de9b6); /* تدرج أكثر إشراقاً عند التمرير */
+}
+
+/* 3. Header والتنقل (Sticky Header) */
+header {
+  background: var(--light-dark); /* خلفية داكنة */
+  color: var(--text-color);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px var(--shadow-dark); /* ظل داكن واضح */
+  border-bottom: 1px solid var(--border-color);
+}
+
+header h1 { font-size: 30px; font-weight: 900; color: var(--primary); text-shadow: 0 0 5px rgba(0, 188, 212, 0.5); }
+nav a {
+  color: var(--text-secondary);
+  margin-right: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s, text-shadow 0.3s;
+  padding-bottom: 8px; /* زيادة المساحة للخط */
+}
+nav a::after {
+  content: '';
+  width: 0;
+  height: 4px; /* خط أكثر سمكاً */
+  background: var(--primary);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 2px;
+}
+nav a:hover { color: var(--primary); text-shadow: 0 0 5px rgba(0, 188, 212, 0.5); }
+nav a:hover::after { width: 100%; }
+
+/* 4. Hero Section (قسم البطل) */
+.hero {
+  height: 90vh;
+  /* صورة خلفية ذات طابع هندسي داكن */
+  background: linear-gradient(rgba(10, 14, 20, 0.85), rgba(10, 14, 20, 0.85)),
+              url('https://images.unsplash.com/photo-1542436863-71887e47a988?q=80&w=2070&auto=format&fit=cover') center/cover no-repeat;
+  background-attachment: fixed; /* تأثير المنظر */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+.hero-content {
+  max-width: 900px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.3); /* خلفية شفافة بسيطة */
+  border-radius: 10px;
+}
+.hero h2 {
+  font-size: 72px;
+  font-weight: 900;
+  margin-bottom: 25px;
+  color: white;
+  text-shadow: 0 0 15px rgba(0, 188, 212, 0.7); /* ظل مضيء */
+  animation: scaleIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+.hero p {
+  font-size: 26px;
+  margin-bottom: 50px;
+  color: var(--text-color);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  animation: fadeInUp 1s ease 0.5s forwards;
+  opacity: 0;
+}
+.hero a {
+  animation: fadeInUp 1s ease 0.8s forwards;
+  opacity: 0;
+}
+
+/* 5. الأقسام المشتركة */
+section { padding: 120px 40px; max-width: 1300px; margin: auto; }
+
+.section-title {
+  font-size: 50px;
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 70px;
+  color: var(--primary); /* العنوان بلون أساسي مضيء */
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  letter-spacing: 2px;
+}
+.section-title.animate { opacity: 1; transform: translateY(0); }
+
+.section-title::after {
+  content: '';
+  width: 100px;
+  height: 6px;
+  background: var(--secondary); /* الخط بلون ثانوي لإضافة تباين */
+  display: block;
+  margin: 25px auto 0;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 10px var(--secondary); /* توهج بسيط للخط */
+}
+.section-title.animate::after { transform: scaleX(1); }
+
+/* 6. Grid والبطاقات */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.card {
+  background: var(--card-bg); /* خلفية البطاقة الداكنة */
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px var(--shadow-dark); /* ظل داكن عميق */
+  text-align: center;
+  transition: transform 0.5s, box-shadow 0.5s, border 0.5s;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color); /* حدود خفيفة */
+
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* شريط التمييز العلوي بدلاً من border-top */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--primary);
+    transition: transform 0.5s ease-out;
+    transform: scaleX(0);
+    transform-origin: right; /* ظهور من اليمين لليسار */
+}
+.card:hover::before {
+    transform: scaleX(1);
+    background: var(--secondary);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02); /* رفع وتكبير أكبر */
+  box-shadow: 0 25px 50px var(--shadow-deep);
+  border-color: rgba(0, 188, 212, 0.4);
+}
+
+/* تعديل خاص لبطاقات الخدمات */
+.service-icon {
+  font-size: 50px;
+  color: var(--primary);
+  margin-bottom: 20px;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.card:hover .service-icon {
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--secondary);
+}
+.card h3, .card h4 {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--primary); /* عناوين البطاقات بلون أساسي */
+}
+.card div {
+    color: var(--text-secondary); /* نصوص داخلية رمادية فاتحة */
+    font-weight: 600;
+}
+
+/* تعديل خاص لبطاقات المشاريع */
+.card-project {
+    padding: 20px; /* تضييق المساحة بسبب وجود صورة */
+}
+.card-project img {
+  width: 100%;
+  height: 250px; /* زيادة ارتفاع الصورة */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: transform 0.6s, filter 0.6s;
+  filter: brightness(0.85); /* صور أغمق قليلاً على خلفية داكنة */
+  border: 1px solid var(--border-color);
+}
+.card-project:hover img {
+  transform: scale(1.03);
+  filter: brightness(1);
+}
+
+/* تعديل خاص لبطاقات فريق العمل */
+.card-team img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 5px solid var(--primary);
+  box-shadow: 0 0 0 7px rgba(0, 188, 212, 0.2);
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.card-team:hover img {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 7px rgba(76, 175, 80, 0.3);
+}
+.card-team div {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 5px;
+}
+.card-team h4 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+/* 7. قسم التواصل */
+.contact-item {
+  text-align: center;
+  font-size: 22px;
+  margin: 20px 0;
+  color: var(--text-color);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+.contact-item i {
+  color: var(--secondary); /* أيقونات التواصل بلون ثانوي */
+  margin-left: 15px;
+  font-size: 28px;
+  text-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+.contact-item.animate { opacity: 1; transform: translateY(0); }
+
+/* 8. Footer */
+footer {
+  background: var(--dark); /* أغمق من باقي الأقسام */
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+  border-top: 5px solid var(--primary);
+  box-shadow: 0 -5px 20px rgba(0, 188, 212, 0.2);
+}
+
+/* 9. Animations - الإطارات الرئيسية (Keyframes) */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 10. Media Queries */
+@media (max-width:768px){
+  header { flex-direction: column; gap:15px; padding: 15px 20px; }
+  nav a { margin: 5px; font-size: 16px; }
+  .hero h2 { font-size: 45px; }
+  .hero p { font-size: 20px; }
+  section { padding: 80px 20px; }
+  .section-title { font-size: 38px; margin-bottom: 50px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="img/4.jpeg" alt="" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover;">
+        <h1 style="margin: 0;">ركن للعقارات</h1>
+    </div>
+  <nav>
+    <a href="#about">عن الشركة</a>
+    <a href="#services">الخدمات</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#team">فريق العمل</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>نبني بثقة وننفذ باحتراف</h2>
+    <p>حلول إنشائية متكاملة بأعلى معايير الجودة والالتزام في الشرق الأوسط</p>
+    <a href="img/VID-20251222-WA0084.mp4" class="btn-primary active popup-video">اكتشف مشاريعنا</a>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">عن الشركة</h2>
+  <p style="text-align:center; max-width:900px; margin:auto; font-size: 20px; color: var(--text-secondary); line-height: 2.0; font-weight: 500;">
+    <i class="fas fa-handshake" style="color: var(--accent); margin-left: 10px;"></i>
+    شركة ركن للعقارات متخصصة في تنفيذ المشاريع السكنية والتجارية والبنية التحتية
+    وفق أعلى معايير الجودة العالمية، مع الالتزام الكامل بالمواعيد النهائية
+    والحفاظ على أعلى مستويات الأمان. رؤيتنا هي أن نكون رواد البناء الحديث في المنطقة من خلال الابتكار والاحترافية.
+  </p>
+</section>
+
+<section id="services">
+  <h2 class="section-title">خدماتنا المبتكرة</h2>
+  <div class="grid">
+    <div class="card card-service">
+      <i class="fas fa-hammer service-icon"></i>
+      <h3>مقاولات عامة وإنشاء الهياكل</h3>
+      <div>تنفيذ أساسات وهياكل خرسانية بمتانة لا مثيل لها.</div>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-paint-roller service-icon"></i>
+      <h3>تشطيبات متكاملة وديكور داخلي</h3>
+      <div>تصميم وتنفيذ التشطيبات الداخلية والخارجية الفاخرة.</div>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-house-chimney service-icon"></i>
+      <h3>تطوير وبناء المباني السكنية</h3>
+      <div>مشاريع سكنية عصرية ومجمعات فلل ذكية.</div>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-city service-icon"></i>
+      <h3>تنفيذ المشاريع التجارية والإدارية</h3>
+      <div>أبراج مكاتب ومراكز تجارية بتصاميم مستدامة.</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">إنجازاتنا البارزة</h2>
+  <div class="grid">
+    <div class="card card-project">
+      <img src="img/3.png" alt="فيلا سكنية">
+      <h3>فيلا الأناقة – القاهرة الجديدة</h3>
+      <div>تصميم وتنفيذ متكامل لأفخم الفيلات السكنية.</div>
+    </div>
+    <div class="card card-project">
+      <img src="img/1.jpg" alt="عمارة إدارية">
+      <h3>برج المستقبل الإداري – مدينة نصر</h3>
+      <div>مبنى مكتبي متعدد الطوابق بتصميم زجاجي عصري.</div>
+    </div>
+    <div class="card card-project">
+      <img src="img/2.png" alt="تشطيب مول تجاري">
+      <h3>تجديد مول سيتي ستارز</h3>
+      <div>إعادة تشطيب وتحديث شامل لمنطقة التسوق والمطاعم.</div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <h2 class="section-title">القيادة وفريق العمل</h2>
+
+  <h3 style="text-align:center; margin-bottom: 40px; font-size: 30px; color: var(--text-color); font-weight: 700;">الإدارة العليا</h3>
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="محمد إسماعيل">
+      <h4>محمد أحمد</h4>
+      <div><i class="fas fa-briefcase"></i> المدير العام والرؤية</div>
+    </div>
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="محمود جلاب">
+      <h4>سارة علي</h4>
+      <div><i class="fas fa-chart-line"></i> مدير تطوير الأعمال والابتكار</div>
+    </div>
+  </div>
+
+  <h3 style="text-align:center; margin: 70px 0 40px; font-size: 30px; color: var(--text-color); font-weight: 700;">فريق المهندسين</h3>
+  <div class="grid">
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="أحمد محمود">
+      <h4>أحمد محمود</h4>
+      <div><i class="fas fa-drafting-compass"></i> مهندس معماري رئيسي</div>
+    </div>
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="ليلى حسن">
+      <h4>ليلى حسن</h4>
+      <div><i class="fas fa-hard-hat"></i> مهندسة مدنية وإشراف مشاريع</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title">تواصل معنا الآن</h2>
+  <div style="max-width: 650px; margin: auto;">
+    <p class="contact-item" data-delay="0">
+      <span style="color: var(--secondary); margin-left: 15px; font-weight: 700;"><i class="fas fa-phone-alt"></i> اتصل بنا:</span>
+      01102923338    |   01126667508
+      
+    </p>
+
+    
+
+    <p class="contact-item" data-delay="100">
+      <span style="color: var(--secondary); margin-left: 15px; font-weight: 700;"><i class="fas fa-envelope"></i> بريد إلكتروني:</span>
+      mohamed@gmail.com
+      
+    </p>
+
+    <p class="contact-item" data-delay="200">
+      <span style="color: var(--secondary); margin-left: 15px; font-weight: 700;"><i class="fas fa-map-marker-alt"></i> مقرنا:</span>
+       شارع المستشار – الحوامدية
+      
+    </p>
+  </div>
+
+  <div style="text-align: center; margin-top: 50px; display: flex; justify-content: center; gap: 20px;">
+     <a href="https://www.facebook.com/YourPage" target="_blank" style="font-size: 30px; color: #1877f2; transition: transform 0.3s, opacity 0.3s;" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+     <a href="https://wa.me/ 01126667508" target="_blank" style="font-size: 30px; color: #25d366; transition: transform 0.3s, opacity 0.3s;" title="WhatsApp"><i class="fab fa-whatsapp-square"></i></a>
+     <a href="mailto:mohamed@gmail.com" style="font-size: 30px; color: #db4437; transition: transform 0.3s, opacity 0.3s;" title="Email"><i class="fas fa-envelope-square"></i></a>
+     <a href="https://www.instagram.com/YourAccount" target="_blank" style="font-size: 30px; color: #E4405F; transition: transform 0.3s, opacity 0.3s;" title="Instagram"><i class="fab fa-instagram-square"></i></a>
+     <a href="https://www.tiktok.com/@YourAccount" target="_blank" style="font-size: 30px; color: #69C9D0; transition: transform 0.3s, opacity 0.3s;" title="TikTok"><i class="fab fa-tiktok"></i></a>
+     <a href="https://t.me/YourChannelOrUsername" target="_blank" style="font-size: 30px; color: #0088cc; transition: transform 0.3s, opacity 0.3s;" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+  </div>
+</section>
+
+<footer>
+  <span style="font-size: 14px; color: var(--text-secondary);">
+      شركة ركن للعقارات – جميع الحقوق محفوظة | تصميم:
+    <span style="font-size: 18px; font-weight: bold; color: var(--primary);">&reg;</span>
+    <a href="https://github.com/Islam412" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700; transition: color 0.3s;">اسلام حمدى</a> 2026
+  </span>
+</footer>
+
+
+
+<script>
+// Scroll animations with Intersection Observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      // إضافة فصل "animate" لتشغيل الرسوم المتحركة
+      entry.target.classList.add('animate');
+      // تعطيل المراقبة بعد أول ظهور
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.15, rootMargin: "0px 0px -50px 0px"}); // تقليل الثرشولد لظهور أسرع
+
+// مراقبة جميع العناوين والبطاقات وعناصر التواصل
+document.querySelectorAll('.card, .section-title, .contact-item').forEach(el => {
+  const delay = el.getAttribute('data-delay');
+  if (delay) {
+    // إضافة تأخير بسيط لعناصر التواصل لتبدو أكثر ديناميكية
+    el.style.transitionDelay = `${delay}ms`;
+  }
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

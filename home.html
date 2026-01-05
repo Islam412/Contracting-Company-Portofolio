@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شركة المستقبل للمقاولات - نبني بثقة وننفذ باحتراف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* 1. المتغيرات والألوان (DARK MODE) */
+:root {
+  /* الألوان الرئيسية */
+  --primary: #4e73df; /* أزرق مؤسسي أكثر هدوءاً */
+  --secondary: #1cc88a; /* أخضر ناعم */
+  --accent: #f6c23e; /* أصفر/ذهبي للتأكيد */
+
+  /* ألوان المظهر الداكن */
+  --dark-bg: #1f2937; /* خلفية داكنة جداً (Dark Slate) */
+  --card-bg: #2b394d; /* خلفية أفتح قليلاً للبطاقات (Dark Blue) */
+  --text-color: #f8f9fa; /* نص فاتح جداً */
+  --text-muted: #adb5bd; /* نص ثانوي رمادي فاتح */
+
+  /* الظلال */
+  --shadow-light: rgba(0, 0, 0, 0.2);
+  --shadow-deep: rgba(0, 0, 0, 0.4);
+
+  /* التدرجات */
+  --gradient: linear-gradient(45deg, var(--primary), #2e4372);
+}
+
+/* 2. الأساسيات العامة */
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--dark-bg); /* تطبيق الخلفية الداكنة */
+  color: var(--text-color); /* تطبيق لون النص الفاتح */
+  line-height: 1.8;
+  overflow-x: hidden;
+  /* الانتقال السلس للألوان في حالة تبديل الوضع */
+  transition: background-color 0.4s, color 0.4s;
+}
+
+h1, h2, h3, h4 { color: var(--text-color); font-weight: 800; }
+
+/* زر الحركة الرئيسي (مظهر حديث) */
+.btn-primary {
+  background: var(--gradient);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 10px; /* جعل الحواف أقل دائرية */
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 10px 25px var(--shadow-deep);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  display: inline-block;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+.btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(45deg, #2e4372, var(--primary)); /* تدرج معكوس بسيط */
+}
+
+/* 3. Header والتنقل (Sticky Header) */
+header {
+  background: var(--card-bg); /* خلفية البطاقة الداكنة */
+  color: var(--text-color);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px var(--shadow-deep); /* ظل أعمق في الوضع الداكن */
+}
+
+header h1 { font-size: 32px; font-weight: 900; color: var(--primary); }
+nav a {
+  color: var(--text-muted); /* لون النص الثانوي */
+  margin-right: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s;
+  padding-bottom: 5px;
+  font-size: 17px;
+}
+nav a::after {
+  content: '';
+  width: 0;
+  height: 4px; /* خط أسمك قليلاً */
+  background: var(--secondary); /* استخدام اللون الثانوي لمزيد من التباين */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+nav a:hover { color: var(--text-color); } /* تفتيح النص عند التحويم */
+nav a:hover::after { width: 100%; }
+
+/* 4. Hero Section (قسم البطل) */
+.hero {
+  height: 90vh;
+  /* خلفية داكنة متناسقة مع صورة ذات تباين جيد */
+  background: linear-gradient(rgba(31, 41, 55, 0.85), rgba(31, 41, 55, 0.85)),
+              url('https://images.unsplash.com/photo-1541336940176-d5d1c5211d0e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  /* الصورة تم تغييرها لتكون أكثر ملاءمة للوضع الداكن */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+.hero-content { max-width: 900px; }
+.hero h2 {
+  font-size: 72px; /* خط أكبر */
+  font-weight: 900;
+  margin-bottom: 25px;
+  color: var(--secondary); /* استخدام لون التمييز للنص الرئيسي */
+  text-shadow: 0 5px 15px rgba(0,0,0,0.7);
+  animation: scaleIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: scale(0.8);
+}
+.hero p {
+  font-size: 26px;
+  margin-bottom: 50px;
+  color: #c0c4c9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  animation: fadeInUp 1s ease 0.5s forwards;
+  opacity: 0;
+}
+
+/* 5. الأقسام المشتركة */
+section { padding: 120px 40px; max-width: 1300px; margin: auto; } /* توسيع وزيادة المساحات */
+
+.section-title {
+  font-size: 48px;
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 70px;
+  color: var(--text-color);
+  position: relative;
+  /* بداية مخفية */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.section-title.animate { opacity: 1; transform: translateY(0); }
+
+.section-title::after {
+  content: '';
+  width: 100px;
+  height: 6px; /* خط أسمك وأطول */
+  background: var(--primary);
+  display: block;
+  margin: 25px auto 0;
+  border-radius: 3px;
+  /* توسع الخط */
+  transform: scaleX(0);
+  transition: transform 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.section-title.animate::after { transform: scaleX(1); }
+
+/* 6. Grid والبطاقات */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 35px;
+  border-radius: 12px; /* حواف عصرية */
+  box-shadow: 0 15px 40px var(--shadow-deep); /* ظل أكثر وضوحاً */
+  text-align: center;
+  transition: transform 0.5s, box-shadow 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* إضافة حدود ناعمة */
+  position: relative;
+  overflow: hidden;
+
+  /* بداية مخفية */
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  background-color: #35455c; /* تغيير لون بسيط عند التحويم */
+}
+
+/* تعديل خاص لبطاقات الخدمات */
+.service-icon {
+  font-size: 50px;
+  color: var(--primary);
+  margin-bottom: 20px;
+  transition: color 0.3s, transform 0.3s;
+}
+.card:hover .service-icon {
+  color: var(--secondary);
+  transform: rotate(3deg) scale(1.1);
+}
+.card div, .card h3 {
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text-color);
+}
+.card p { color: var(--text-muted); }
+
+/* تعديل خاص لبطاقات المشاريع */
+.card-project { padding: 0; overflow: hidden; }
+.card-project img {
+  width: 100%;
+  height: 250px; /* طول أكبر للصورة */
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 0;
+  transition: transform 0.6s;
+  filter: brightness(0.85); /* تغميق الصورة قليلاً لتناسب الوضع الداكن */
+}
+.card-project-content { padding: 25px; text-align: right; }
+.card-project:hover img {
+  transform: scale(1.1);
+  filter: brightness(1);
+}
+.card-project h3 { margin-bottom: 5px; font-size: 24px; }
+.card-project div { font-size: 16px; color: var(--accent); font-weight: 600; }
+
+/* تعديل خاص لبطاقات فريق العمل */
+.card-team img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 5px solid var(--primary);
+  box-shadow: 0 0 0 8px rgba(78, 115, 223, 0.15);
+  transition: border-color 0.4s;
+}
+.card-team:hover img {
+  border-color: var(--secondary);
+}
+.card-team div {
+  font-size: 17px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.card-team h4 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+/* 7. قسم التواصل (شكل أحدث) */
+.contact-item {
+  text-align: center;
+  font-size: 22px;
+  margin: 25px 0;
+  color: var(--text-color);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+.contact-item i {
+  color: var(--secondary);
+  margin-left: 10px;
+  font-size: 26px;
+}
+.contact-item.animate { opacity: 1; transform: translateY(0); }
+
+/* 8. Footer */
+footer {
+  background: #101824; /* لون أغمق لقسم القدم */
+  color: var(--text-muted);
+  text-align: center;
+  padding: 50px;
+  font-size: 17px;
+  border-top: 5px solid var(--primary);
+  margin-top: 40px;
+}
+footer a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
+footer a:hover { color: var(--secondary); }
+
+/* 9. Animations - الإطارات الرئيسية (Keyframes) */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 10. Media Queries */
+@media (max-width:992px){
+  .hero h2 { font-size: 60px; }
+}
+@media (max-width:768px){
+  header { flex-direction: column; gap:15px; padding: 15px 20px; }
+  nav a { margin: 5px 10px; font-size: 15px; }
+  .hero h2 { font-size: 44px; }
+  .hero p { font-size: 20px; }
+  section { padding: 80px 20px; }
+  .section-title { font-size: 36px; margin-bottom: 50px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>المستقبل <span style="color:var(--secondary);">للمقاولات</span></h1>
+  <nav>
+    <a href="#about">عن الشركة</a>
+    <a href="#services">الخدمات</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#team">فريق العمل</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>نبني بثقة وننفذ باحتراف</h2>
+    <p>حلول إنشائية متكاملة بأعلى معايير الجودة والالتزام في الشرق الأوسط</p>
+    <a href="#projects" class="btn-primary">استكشاف أحدث مشاريعنا <i class="fas fa-arrow-left"></i></a>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">قصة <span style="color:var(--primary);">النجاح</span></h2>
+  <div style="text-align:center; max-width:900px; margin:auto; font-size: 18px; color: var(--text-muted);">
+    <i class="fas fa-handshake" style="color: var(--accent); margin-bottom: 15px; font-size: 30px;"></i>
+    <p style="margin-bottom: 20px;">
+    تأسست شركة المستقبل للمقاولات على مبادئ **الجودة**، **الابتكار**، و**النزاهة**. نحن نلتزم بتنفيذ المشاريع
+    السكنية، التجارية، ومشاريع البنية التحتية وفق **أعلى المعايير العالمية**،
+    مع ضمان الالتزام الكامل بالميزانية والمواعيد النهائية. رؤيتنا هي أن نكون رواد البناء الذكي والمستدام في المنطقة.
+    </p>
+    <a href="#contact" class="btn-primary" style="padding: 10px 25px; font-size: 16px;">
+      اطلب استشارة مجانية
+    </a>
+  </div>
+</section>
+
+<section id="services">
+  <h2 class="section-title">ماذا <span style="color:var(--secondary);">نقدم</span>؟</h2>
+  <div class="grid">
+    <div class="card card-service">
+      <i class="fas fa-cubes service-icon"></i>
+      <div>مقاولات عامة وإنشاء الهياكل</div>
+      <p style="margin-top: 10px;">بناء الهياكل الخرسانية والمعدنية للمشاريع الكبرى.</p>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-drafting-compass service-icon"></i>
+      <div>تصميم وهندسة معمارية</div>
+      <p style="margin-top: 10px;">إعداد المخططات والتصاميم ثلاثية الأبعاد المبتكرة.</p>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-fill-drip service-icon"></i>
+      <div>تشطيبات متكاملة وديكور</div>
+      <p style="margin-top: 10px;">تنفيذ جميع أعمال التشطيبات الداخلية والخارجية الفاخرة.</p>
+    </div>
+    <div class="card card-service">
+      <i class="fas fa-lightbulb service-icon"></i>
+      <div>حلول البناء الذكي (Smart Building)</div>
+      <p style="margin-top: 10px;">دمج التقنيات الحديثة وأنظمة التشغيل الآلي للمباني.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">أبرز <span style="color:var(--primary);">مشاريعنا</span></h2>
+  <div class="grid">
+    <div class="card card-project">
+      <img src="https://images.unsplash.com/photo-1541336940176-d5d1c5211d0e?auto=format&fit=crop&w=800&q=80" alt="برج شاهق">
+      <div class="card-project-content">
+        <h3>برج الابتكار التجاري</h3>
+        <div><i class="fas fa-calendar-alt"></i> تم الانتهاء: 2024 | <i class="fas fa-map-marker-alt"></i> الرياض، السعودية</div>
+      </div>
+    </div>
+    <div class="card card-project">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="مجمع سكني">
+      <div class="card-project-content">
+        <h3>مجمع الياقوت السكني</h3>
+        <div><i class="fas fa-calendar-alt"></i> قيد التنفيذ | <i class="fas fa-map-marker-alt"></i> القاهرة الجديدة، مصر</div>
+      </div>
+    </div>
+    <div class="card card-project">
+      <img src="https://images.unsplash.com/photo-1590425864461-cd9ce70a1b3e?auto=format&fit=crop&w=800&q=80" alt="مركز تسوق">
+      <div class="card-project-content">
+        <h3>تجديد مركز الأهرام التجاري</h3>
+        <div><i class="fas fa-calendar-alt"></i> تم الانتهاء: 2023 | <i class="fas fa-map-marker-alt"></i> دبي، الإمارات</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <h2 class="section-title">فريق <span style="color:var(--secondary);">الخبراء</span></h2>
+
+  <h3 style="text-align:center; margin-bottom: 30px; font-size: 28px; color: var(--text-color);">القادة وصناع القرار</h3>
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="محمد أحمد">
+      <h4>محمد أحمد</h4>
+      <div><i class="fas fa-crown"></i> المؤسس والرئيس التنفيذي</div>
+    </div>
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="سارة علي">
+      <h4>سارة علي</h4>
+      <div><i class="fas fa-rocket"></i> رئيس قسم الابتكار والتقنية</div>
+    </div>
+  </div>
+
+  <h3 style="text-align:center; margin: 60px 0 30px; font-size: 28px; color: var(--text-color);">مهندسو الإشراف والتنفيذ</h3>
+  <div class="grid">
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="أحمد محمود">
+      <h4>أحمد محمود</h4>
+      <div><i class="fas fa-sitemap"></i> مدير المشاريع الهيكلية</div>
+    </div>
+    <div class="card card-team">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="ليلى حسن">
+      <h4>ليلى حسن</h4>
+      <div><i class="fas fa-city"></i> كبير المهندسين المعماريين</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title">دعنا <span style="color:var(--primary);">نتحدث</span></h2>
+  <div style="max-width: 700px; margin: auto;">
+    <p class="contact-item" data-delay="0"><i class="fas fa-phone-volume"></i> هاتف: +20 100 000 0000</p>
+    <p class="contact-item" data-delay="100"><i class="fas fa-at"></i> بريد إلكتروني: <a href="mailto:info@future-construction.com" style="color: var(--text-color); text-decoration: none;">info@future-construction.com</a></p>
+    <p class="contact-item" data-delay="200"><i class="fas fa-location-dot"></i> العنوان: 15 شارع الأمل، التجمع الخامس – مصر</p>
+  </div>
+</section>
+
+<footer>
+  <p>
+    © 2025 <span style="color:var(--primary); font-weight: 700;">المستقبل للمقاولات</span> – جميع الحقوق محفوظة |
+    <a href="#" style="margin-right: 5px;">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a>
+  </p>
+</footer>
+
+<script>
+// Scroll animations with Intersection Observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      // إضافة فصل "animate" لتشغيل الرسوم المتحركة
+      entry.target.classList.add('animate');
+      // تعطيل المراقبة بعد أول ظهور
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.15, rootMargin: "0px 0px -50px 0px"});
+
+// مراقبة جميع العناوين والبطاقات وعناصر التواصل
+document.querySelectorAll('.card, .section-title, .contact-item').forEach(el => {
+  const delay = el.getAttribute('data-delay');
+  if (delay) {
+    // إضافة تأخير بسيط لعناصر التواصل لتبدو أكثر ديناميكية
+    el.style.transitionDelay = `${delay}ms`;
+  }
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
